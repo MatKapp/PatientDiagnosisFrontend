@@ -2,6 +2,6 @@
   <tr *ngFor="let exam of service.list">
     <td (click)="populateForm(exam)">{{exam.id}}-{{exam.infraction}}</td>
     <td (click)="populateForm(exam)">FistTia:{{exam.firstTia}}</td>
-    <td><button class="btn btn-sm btn-outline-danger">X</button></td>
+    <td><button (click)="onDelete(exam.id)" class="btn btn-sm btn-outline-danger">X</button></td>
   </tr>
 </table>

@@ -21,6 +21,10 @@ export class ExaminationService {
   return this.http.put(this.rootURL + formData.id + '/', formData);
   }
 
+  deleteExamination(id: number) {
+    return this.http.delete(this.rootURL + id + '/');
+    }
+
   refreshList() {
     this.http.get(this.rootURL)
     .toPromise().then(res => this.list = res as Examination[]);
