@@ -1,3 +1,41 @@
-<p>
-  examination works!
-</p>
+<form #form="ngForm">
+  <div class="form-group">
+    <label>AtrialFibrillation</label>
+    <input name="AtrialFibrillation" #AtrialFibrillation="ngModel" [(ngModel)]="service.formdata.AtrialFibrillation" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>BodyWeakness</label>
+    <input name="BodyWeakness" #BodyWeakness="ngModel" [(ngModel)]="service.formdata.BodyWeakness" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>FirstTia</label>
+    <input name="FirstTia" #FirstTia="ngModel" [(ngModel)]="service.formdata.FirstTia" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>GaitDisturb</label>
+    <input name="GaitDisturb" #GaitDisturb="ngModel" [(ngModel)]="service.formdata.GaitDisturb" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>HighGlucose</label>
+    <input name="HighGlucose" #HighGlucose="ngModel" [(ngModel)]="service.formdata.HighGlucose" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>Infraction</label>
+    <input name="Infraction" #Infraction="ngModel" [(ngModel)]="service.formdata.Infraction" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>InitialDbp</label>
+    <input name="Infraction" #InitialDbp="ngModel" [(ngModel)]="service.formdata.InitialDbp" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>SpeechDif</label>
+    <input name="SpeechDif" #SpeechDif="ngModel" [(ngModel)]="service.formdata.SpeechDif" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>Vertigo</label>
+    <input name="Vertigo" #Vertigo="ngModel" [(ngModel)]="service.formdata.Vertigo" class="form-control">
+  </div>
+  <div class="form-group">
+    <button type="submit" [disabled]="form.invalid" class="btn btn-lg btn-block">SUBMIT</button>
+  </div>
+</form>

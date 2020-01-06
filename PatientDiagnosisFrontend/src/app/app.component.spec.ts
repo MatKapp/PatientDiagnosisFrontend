@@ -1,34 +1,31 @@
-/* tslint:disable:no-unused-variable */
-
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-  beforeEach(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent
       ],
-    });
-    TestBed.compileComponents();
-  });
+    }).compileComponents();
+  }));
 
-  it('should create the app', async(() => {
+  it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
-  }));
+  });
 
-  it(`should have as title 'PatientDiagnosisFrontend!'`, async(() => {
+  it(`should have as title 'PatientDiagnosis'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('PatientDiagnosisFrontend!');
-  }));
+    expect(app.title).toEqual('PatientDiagnosis');
+  });
 
-  it('should render title in a h1 tag', async(() => {
+  it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('PatientDiagnosisFrontend!');
-  }));
+    expect(compiled.querySelector('.content span').textContent).toContain('PatientDiagnosis app is running!');
+  });
 });
