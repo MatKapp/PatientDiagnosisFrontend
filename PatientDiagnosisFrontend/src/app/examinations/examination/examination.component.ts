@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ExaminationService } from 'src/app/service/examination.service';
 import { NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-examination',
@@ -9,7 +10,9 @@ import { NgForm } from '@angular/forms';
 })
 export class ExaminationComponent implements OnInit {
 
-  constructor(private service: ExaminationService) { }
+  constructor(
+    private service: ExaminationService,
+    private toastr: ToastrService) { }
 
   ngOnInit() {
     this.resetForm();
@@ -22,25 +25,37 @@ export class ExaminationComponent implements OnInit {
 
     this.service.formdata = {
       id: null,
-      atrialFibrillation: null,
-      bodyWeakness: null,
-      firstTia: null,
-      gaitDisturb: null,
-      highGlucose: null,
+      atrialFibrillation: false,
+      bodyWeakness: false,
+      firstTia: false,
+      gaitDisturb: false,
+      highGlucose: false,
       infraction: null,
       initialDbp: null,
-      speechDif: null,
-      vertigo: null,
+      speechDif: false,
+      vertigo: false,
     };
   }
 
   onSubmit(form: NgForm) {
-    this.insertRecord(form);
+    if (form.value.id == null) {
+      this.insertRecord(form);
+    } else {
+      this.updateRecord(form);
+    }
+    this.resetForm(form);
+    this.service.refreshList();
   }
 
   insertRecord(form: NgForm) {
     this.service.postExamination(form.value).subscribe(res => {
-      console.log(res);
+      this.toastr.success('Inserted successfully', 'EXAM register');
+    });
+  }
+
+  updateRecord(form: NgForm) {
+    this.service.putExamination(form.value).subscribe(res => {
+      this.toastr.success('Updated successfully', 'EXAM updated');
     });
   }
 }
