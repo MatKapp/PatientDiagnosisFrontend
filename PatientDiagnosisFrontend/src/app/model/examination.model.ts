@@ -1,12 +1,12 @@
 export class Examination {
-  Id: number;
-  AtrialFibrillation: boolean;
-  BodyWeakness: boolean;
-  FirstTia: boolean;
-  GaitDisturb: boolean;
-  HighGlucose: boolean;
-  Infraction: boolean;
-  InitialDbp: number;
-  SpeechDif: boolean;
-  Vertigo: boolean;
+  id: number;
+  atrialFibrillation: boolean;
+  bodyWeakness: boolean;
+  firstTia: boolean;
+  gaitDisturb: boolean;
+  highGlucose: boolean;
+  infraction: number;
+  initialDbp: number;
+  speechDif: boolean;
+  vertigo: boolean;
 }

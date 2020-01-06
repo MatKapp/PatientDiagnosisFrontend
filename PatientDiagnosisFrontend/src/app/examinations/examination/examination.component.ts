@@ -21,16 +21,16 @@ export class ExaminationComponent implements OnInit {
     }
 
     this.service.formdata = {
-      Id: null,
-      AtrialFibrillation: null,
-      BodyWeakness: null,
-      FirstTia: null,
-      GaitDisturb: null,
-      HighGlucose: null,
-      Infraction: null,
-      InitialDbp: null,
-      SpeechDif: null,
-      Vertigo: null,
+      id: null,
+      atrialFibrillation: null,
+      bodyWeakness: null,
+      firstTia: null,
+      gaitDisturb: null,
+      highGlucose: null,
+      infraction: null,
+      initialDbp: null,
+      speechDif: null,
+      vertigo: null,
     };
   }
 
@@ -39,6 +39,8 @@ export class ExaminationComponent implements OnInit {
   }
 
   insertRecord(form: NgForm) {
-
+    this.service.postExamination(form.value).subscribe(res => {
+      console.log(res);
+    });
   }
 }
