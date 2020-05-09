@@ -30,8 +30,8 @@ export class ExaminationComponent implements OnInit {
       firstTia: false,
       gaitDisturb: false,
       highGlucose: false,
-      infraction: null,
-      initialDbp: null,
+      infraction: 0,
+      initialDbp: 0,
       speechDif: false,
       vertigo: false,
     };
@@ -39,6 +39,7 @@ export class ExaminationComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     if (form.value.id == null) {
+      delete form.value.id;
       this.insertRecord(form);
     } else {
       this.updateRecord(form);

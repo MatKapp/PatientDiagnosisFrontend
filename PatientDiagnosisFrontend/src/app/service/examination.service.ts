@@ -9,7 +9,7 @@ export class ExaminationService {
 
   formdata: Examination;
   list: Examination[];
-  readonly rootURL ="http://localhost:8000/examinations/"
+  readonly rootURL = 'https://localhost:44393/api/examinations/'
 
   constructor(private http: HttpClient) { }
 
