@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ExaminationService } from 'src/app/service/examination.service';
 import { Examination } from 'src/app/model/examination.model';
 import { ToastrService } from 'ngx-toastr';
+declare var jquery: any;
 
 @Component({
   selector: 'app-examination-list',
@@ -9,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./examination-list.component.css']
 })
 export class ExaminationListComponent implements OnInit {
+  dtOptions: DataTables.Settings = {};
 
   constructor(
     private service: ExaminationService,
@@ -16,6 +18,10 @@ export class ExaminationListComponent implements OnInit {
 
   ngOnInit() {
     this.service.refreshList();
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 2
+    };
   }
 
   populateForm(exam: Examination) {
