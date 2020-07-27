@@ -1,5 +1,6 @@
 export class Examination {
   id: number;
+  patientId: number;
   atrialFibrillation: boolean;
   bodyWeakness: boolean;
   firstTia: boolean;
@@ -9,4 +10,6 @@ export class Examination {
   initialDbp: number;
   speechDif: boolean;
   vertigo: boolean;
+  firstClassPrediction: number;
+  secondClassPrediction: number;
 }

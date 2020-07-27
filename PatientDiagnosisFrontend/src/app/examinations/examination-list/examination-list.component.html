@@ -5,23 +5,21 @@
     <td><button (click)="onDelete(exam.id)" class="btn btn-sm btn-outline-danger">X</button></td>
   </tr>
 </table> -->
-<table datatable [dtOptions]="dtOptions" class="row-border hover m-5">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Infraction</th>
-      <th>firstTia</th>
-      <th>Examination</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let exam of service.list">
-      <td>{{ exam.id }}</td>
-      <td>{{ exam.infraction }}</td>
-      <td>{{ exam.firstTia }}</td>
-      <td>
-        <button>Examinations</button>
-      </td>
-    </tr>
-  </tbody>
+<div class="m-5">
+  <table datatable [dtOptions]="dtOptions" class="row-border hover m-5">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Infraction</th>
+        <th>firstTia</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let exam of service.list">
+        <td>{{ exam.id }}</td>
+        <td>{{ exam.infraction }}</td>
+        <td>{{ exam.firstTia }}</td>
+      </tr>
+    </tbody>
   </table>
+</div>

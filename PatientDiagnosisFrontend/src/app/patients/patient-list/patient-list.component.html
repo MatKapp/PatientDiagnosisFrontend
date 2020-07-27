@@ -1,0 +1,32 @@
+<!-- <table class="table table-hover">
+  <tr *ngFor="let exam of service.list">
+    <td (click)="populateForm(exam)">{{exam.id}}-{{exam.infraction}}</td>
+    <td (click)="populateForm(exam)">FistTia:{{exam.firstTia}}</td>
+    <td><button (click)="onDelete(exam.id)" class="btn btn-sm btn-outline-danger">X</button></td>
+  </tr>
+</table> -->
+<app-examination *ngIf="editPatientExamination" (backClick)="toogleEditPatients()"[examination]="selectedPatientExamination" [patientId]="selectedPatientId">
+</app-examination>
+<div class="m-5" *ngIf="!editPatientExamination">
+  <h1 class="mb-3">Patients:</h1>
+  <table datatable [dtOptions]="dtOptions" class="row-border hover m-5">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>SURNAME</th>
+        <th>AGE</th>
+        <th>Examinations</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let patient of patientService.list">
+        <td>{{ patient.id }}</td>
+        <td>{{ patient.surname }}</td>
+        <td>{{ patient.age }}</td>
+        <td>
+          <button type="button" class="btn btn-info" (click)="showPatientExaminations(patient)">Examinations</button>
+        </td>
+      </tr>
+    </tbody>
+    </table>
+</div>
