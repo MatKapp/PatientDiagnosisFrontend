@@ -36,7 +36,8 @@ export class ExaminationComponent implements OnInit {
       speechDif: false,
       vertigo: false,
       firstClassPrediction: 0,
-      secondClassPrediction: 0
+      secondClassPrediction: 0,
+      tiaInTwoWeeksOccured: false
     };
     this.resetForm();
     // this.service.formdata = null;// this.examination;
@@ -63,7 +64,8 @@ export class ExaminationComponent implements OnInit {
         speechDif: false,
         vertigo: false,
         firstClassPrediction: 0,
-        secondClassPrediction: 0
+        secondClassPrediction: 0,
+        tiaInTwoWeeksOccured: false
       };
     } else {
       this.examination.subscribe((res) => this.service.formdata = res);

@@ -8,9 +8,9 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
   styleUrls: ['./statistics.component.css']
 })
 export class StatisticsComponent implements OnInit {
-  patients = null;
-  examinations = null;
-  predictionsFrequency = null;
+  patients: null;
+  examinations: null;
+  predictionsFrequency: any[];
 
   constructor(private statisticsService: StatisticsService) { }
 
@@ -18,8 +18,8 @@ export class StatisticsComponent implements OnInit {
     // this.patients = this.statisticsService.getPatients();
     // this.examinations = this.statisticsService.getExaminations();
     this.statisticsService.getPredictionsFrequency()
-      .subscribe((res) => {
-        if (res instanceof Array){
+      .subscribe(res => {
+        if (res instanceof Array) {
           this.predictionsFrequency = res.map(prediction => ({name: prediction.roandedPrediction.toString(), value: prediction.frequency.toString()}))
         }
       });

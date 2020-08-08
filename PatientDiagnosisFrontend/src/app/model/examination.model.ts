@@ -12,4 +12,5 @@ export class Examination {
   vertigo: boolean;
   firstClassPrediction: number;
   secondClassPrediction: number;
+  tiaInTwoWeeksOccured: boolean;
 }

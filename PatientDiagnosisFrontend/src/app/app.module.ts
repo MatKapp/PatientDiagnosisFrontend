@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule } from '@angular/material';
+import {MatTabsModule} from '@angular/material/tabs';
+
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -49,7 +51,8 @@ import { StatisticsComponent } from './statistics/statistics.component';
     MatButtonModule,
     MatIconModule,
     DataTablesModule,
-    NgxChartsModule
+    NgxChartsModule,
+    MatTabsModule
   ],
   providers: [ExaminationService, PatientService, StatisticsService],
   bootstrap: [AppComponent]
