@@ -15,6 +15,7 @@ declare var jquery: any;
 export class PatientListComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   public patients: Patient[];
+  public showTable: boolean;
   editPatientExamination = false;
   selectedPatientId = null;
   selectedPatientExamination: Examination = null;
@@ -40,9 +41,14 @@ export class PatientListComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.data.subscribe(data => this.patients = data.patients as Patient[])
+    this.showTable = false;
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 10
+      pageLength: 10,
+      deferRender: true,
+      initComplete: (settings, json) => {
+        this.showTable = true;
+      }
     };
   }
 

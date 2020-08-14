@@ -9,13 +9,13 @@
 </app-examination>
 <div class="m-5" *ngIf="!editPatientExamination">
   <h1 class="mb-3">Patients:</h1>
-  <table datatable [dtOptions]="dtOptions" class="row-border hover m-5">
+  <table [hidden]="!showTable" datatable [dtOptions]="dtOptions" class="row-border hover m-5">
     <thead>
       <tr>
         <th>ID</th>
         <th>SURNAME</th>
         <th>AGE</th>
-        <th>Examinations</th>
+        <th>Observations</th>
       </tr>
     </thead>
     <tbody>
@@ -24,7 +24,7 @@
         <td>{{ patient.surname }}</td>
         <td>{{ patient.age }}</td>
         <td>
-          <button type="button" class="btn btn-info" (click)="showPatientExaminations(patient)">Examinations</button>
+          <button type="button" class="btn btn-info" (click)="showPatientExaminations(patient)">Observations</button>
         </td>
       </tr>
     </tbody>
@@ -33,7 +33,7 @@
         <th>ID</th>
         <th>SURNAME</th>
         <th>AGE</th>
-        <th>Examinations</th>
+        <th>Observations</th>
       </tr>
     </tfoot>
     </table>

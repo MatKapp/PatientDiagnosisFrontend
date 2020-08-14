@@ -13,6 +13,7 @@ declare var jquery: any;
 export class ExaminationListComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   public examinations: Examination[];
+  public showTable: boolean;
 
   constructor(
     private service: ExaminationService,
@@ -21,9 +22,14 @@ export class ExaminationListComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.data.subscribe(data => this.examinations = data.examinations as Examination[]);
+    this.showTable = false;
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 10
+      pageLength: 10,
+      deferRender: true,
+      initComplete: (settings, json) => {
+        this.showTable = true;
+      }
     };
   }
 

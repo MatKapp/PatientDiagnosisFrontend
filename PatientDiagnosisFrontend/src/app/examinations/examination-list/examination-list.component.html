@@ -6,7 +6,8 @@
   </tr>
 </table> -->
 <div class="m-5">
-  <table datatable [dtOptions]="dtOptions" class="row-border hover m-5">
+  <h1 class="mb-3">Observations:</h1>
+  <table [hidden]="!showTable" datatable [dtOptions]="dtOptions" class="row-border hover m-5">
     <thead>
       <tr>
         <th>ID</th>
