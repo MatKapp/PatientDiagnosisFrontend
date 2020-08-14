@@ -15,11 +15,18 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let exam of service.list">
+      <tr *ngFor="let exam of examinations">
         <td>{{ exam.id }}</td>
         <td>{{ exam.infraction }}</td>
         <td>{{ exam.firstTia }}</td>
       </tr>
     </tbody>
+    <tfoot>
+      <tr>
+        <th>ID</th>
+        <th>Infraction</th>
+        <th>firstTia</th>
+      </tr>
+    </tfoot>
   </table>
 </div>

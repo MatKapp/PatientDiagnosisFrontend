@@ -4,6 +4,7 @@ import { ExaminationService } from 'src/app/service/examination.service';
 import { Patient } from 'src/app/model/patient.model';
 import { Examination } from 'src/app/model/examination.model';
 import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute } from '@angular/router';
 declare var jquery: any;
 
 @Component({
@@ -13,6 +14,7 @@ declare var jquery: any;
 })
 export class PatientListComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
+  public patients: Patient[];
   editPatientExamination = false;
   selectedPatientId = null;
   selectedPatientExamination: Examination = null;
@@ -33,13 +35,14 @@ export class PatientListComponent implements OnInit {
   constructor(
     private patientService: PatientService,
     private examinationService: ExaminationService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.patientService.refreshList();
+    this.activatedRoute.data.subscribe(data => this.patients = data.patients as Patient[])
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 2
+      pageLength: 10
     };
   }
 
@@ -50,7 +53,7 @@ export class PatientListComponent implements OnInit {
   onDelete(id: number) {
     if (confirm('Are you sure to delete this record?')){
       this.patientService.deletePatient(id).subscribe(res => {
-        this.patientService.refreshList();
+        this.refreshList();
         this.toastr.warning('Deleted successfully', 'PATIENT deleted');
       });
     }
@@ -58,6 +61,10 @@ export class PatientListComponent implements OnInit {
 
   toogleEditPatients() {
     this.editPatientExamination = this.editPatientExamination ? false : true;
+  }
+
+  refreshList() {
+    this.patientService.getPatients().subscribe(data => this.patients = data as Patient[]);
   }
 
   public showPatientExaminations(patient) {

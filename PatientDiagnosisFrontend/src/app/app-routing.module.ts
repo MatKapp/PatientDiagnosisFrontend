@@ -4,15 +4,19 @@ import { ExaminationListComponent } from 'src/app/examinations/examination-list/
 import { PatientListComponent } from 'src/app/patients/patient-list/patient-list.component';
 import { StatisticsComponent } from 'src/app/statistics/statistics.component';
 import { MenuComponent } from 'src/app/menu/menu.component';
+import { ExaminationsResolverService } from './service/examinations-resolver.service';
+import { PatientsResolverService } from './service/patients-resolver.service';
 
 const routes: Routes = [
     {
         path: 'examinations',
-        component: ExaminationListComponent
+        component: ExaminationListComponent,
+        resolve: { examinations: ExaminationsResolverService }
     },
     {
       path: 'patients',
-      component: PatientListComponent
+      component: PatientListComponent,
+      resolve: { patients: PatientsResolverService }
     },
     {
         path: 'menu',

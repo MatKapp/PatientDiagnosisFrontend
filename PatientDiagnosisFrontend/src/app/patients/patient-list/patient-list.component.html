@@ -19,7 +19,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let patient of patientService.list">
+      <tr *ngFor="let patient of patients">
         <td>{{ patient.id }}</td>
         <td>{{ patient.surname }}</td>
         <td>{{ patient.age }}</td>
@@ -28,5 +28,13 @@
         </td>
       </tr>
     </tbody>
+    <tfoot>
+      <tr>
+        <th>ID</th>
+        <th>SURNAME</th>
+        <th>AGE</th>
+        <th>Examinations</th>
+      </tr>
+    </tfoot>
     </table>
 </div>

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Patient } from '../model/patient.model';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,10 @@ export class PatientService {
   deletePatient(id: number) {
     return this.http.delete(this.rootURL + id + '/');
     }
+
+  getPatients() {
+    return this.http.get(this.rootURL) as Observable<Patient[]>;
+  }
 
   refreshList() {
     this.http.get(this.rootURL)
