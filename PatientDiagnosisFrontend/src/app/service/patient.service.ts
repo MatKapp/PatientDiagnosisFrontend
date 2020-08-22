@@ -29,6 +29,10 @@ export class PatientService {
     return this.http.get(this.rootURL) as Observable<Patient[]>;
   }
 
+  getPatient(id: number) {
+    return this.http.get(this.rootURL + id + '/') as Observable<Patient>;
+  }
+
   refreshList() {
     this.http.get(this.rootURL)
       .toPromise().then(res => this.list = res as Patient[]);

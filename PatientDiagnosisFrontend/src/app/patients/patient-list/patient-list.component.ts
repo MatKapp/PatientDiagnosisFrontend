@@ -17,21 +17,9 @@ export class PatientListComponent implements OnInit {
   public patients: Patient[];
   public showTable: boolean;
   editPatientExamination = false;
+  editPatient = false;
   selectedPatientId = null;
   selectedPatientExamination: Examination = null;
-  // selectedPatientExamination = {
-  //   id: null,
-  //   patientId: 20,
-  //   atrialFibrillation: true,
-  //   bodyWeakness: true,
-  //   firstTia: true,
-  //   gaitDisturb: true,
-  //   highGlucose: true,
-  //   infraction: 10,
-  //   initialDbp: 10,
-  //   speechDif: false,
-  //   vertigo: false,
-  // };
 
   constructor(
     private patientService: PatientService,
@@ -65,8 +53,12 @@ export class PatientListComponent implements OnInit {
     }
   }
 
-  toogleEditPatients() {
+  toogleEditPatientExaminations() {
     this.editPatientExamination = this.editPatientExamination ? false : true;
+  }
+
+  toogleEditPatient() {
+    this.editPatient = this.editPatient ? false : true;
   }
 
   refreshList() {
@@ -76,6 +68,26 @@ export class PatientListComponent implements OnInit {
   public showPatientExaminations(patient) {
     this.selectedPatientId = patient.id;
     this.selectedPatientExamination = this.examinationService.getByPatient(patient.id);
-    this.toogleEditPatients();
+    this.toogleEditPatientExaminations();
+  }
+
+  public showPatient(patient) {
+    if (patient) {
+      this.selectedPatientId = patient.id;
+    }
+    else {
+      this.selectedPatientId = undefined;
+    }
+    this.toogleEditPatient();
+  }
+
+  public onPatientAdded(patient) {
+    this.refreshList();
+  }
+
+  public onPatientUpdated(patient) {
+    console.log(patient);
+    const indexToUpdate = this.patients.findIndex(item => item.id === patient.id);
+    this.patients[indexToUpdate] = patient;
   }
 }

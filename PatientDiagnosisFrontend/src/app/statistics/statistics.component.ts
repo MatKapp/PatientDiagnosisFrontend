@@ -11,6 +11,7 @@ export class StatisticsComponent implements OnInit {
   patients: null;
   examinations: null;
   predictionsFrequency: any[];
+  ageFrequency: any[];
 
   constructor(private statisticsService: StatisticsService) { }
 
@@ -21,6 +22,14 @@ export class StatisticsComponent implements OnInit {
       .subscribe(res => {
         if (res instanceof Array) {
           this.predictionsFrequency = res.map(prediction => ({name: prediction.roandedPrediction.toString(), value: prediction.frequency.toString()}))
+        }
+      });
+
+    this.statisticsService.getAgeFrequency()
+      .subscribe(res => {
+        if (res instanceof Array) {
+          this.ageFrequency = res.map(age => ({name: `${age.downAgeBoundary}-${age.upAgeBoundary}`, value: age.frequency}))
+          console.log(this.ageFrequency);
         }
       });
   }

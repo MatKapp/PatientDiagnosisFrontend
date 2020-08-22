@@ -26,4 +26,8 @@ export class StatisticsService {
   getPredictionsFrequency() {
     return this.http.get(this.rootURL + 'GetPredictionsFrequency');
   }
+
+  getAgeFrequency() {
+    return this.http.get(this.rootURL + 'GetAgeFrequency');
+  }
 }

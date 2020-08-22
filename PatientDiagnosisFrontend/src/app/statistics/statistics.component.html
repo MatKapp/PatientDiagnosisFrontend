@@ -1,4 +1,12 @@
 <div class="m-5">
-  <ngx-charts-pie-chart [results]="predictionsFrequency">
-  </ngx-charts-pie-chart>
+  <div class="w-50 d-inline-block">
+    <h2>Predictions frequency:</h2>
+    <ngx-charts-pie-chart [results]="predictionsFrequency">
+    </ngx-charts-pie-chart>
+  </div>
+  <div class="w-50 d-inline-block">
+    <h2>Age frequency:</h2>
+    <ngx-charts-pie-grid [results]="ageFrequency">
+    </ngx-charts-pie-grid>
+  </div>
 </div>

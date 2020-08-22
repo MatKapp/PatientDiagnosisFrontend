@@ -6,6 +6,7 @@ import { Patient } from 'src/app/model/patient.model';
 import { Examination } from 'src/app/model/examination.model';
 import { async } from '@angular/core/testing';
 import { Observable } from 'rxjs';
+import * as signalR from '@aspnet/signalr';
 
 @Component({
   selector: 'app-examination',
@@ -16,6 +17,8 @@ export class ExaminationComponent implements OnInit {
   @Input() examination: Observable<Examination>;
   @Input() patientId;
   @Output() backClick: EventEmitter<any> = new EventEmitter();
+
+  public hubConnection: signalR.HubConnection;
 
   constructor(
     private service: ExaminationService,
@@ -39,16 +42,16 @@ export class ExaminationComponent implements OnInit {
       secondClassPrediction: 0,
       tiaInTwoWeeksOccured: false
     };
+
     this.resetForm();
-    // this.service.formdata = null;// this.examination;
+    this.startSignalRConnection();
+    this.addPredictionListener();
   }
 
   resetForm(form?: NgForm) {
     if (form != null) {
       form.resetForm();
     }
-
-    console.log(this.examination);
 
     if (this.examination == null){
       this.service.formdata = {
@@ -72,7 +75,28 @@ export class ExaminationComponent implements OnInit {
     }
   }
 
+  startSignalRConnection() {
+    this.hubConnection = new signalR.HubConnectionBuilder()
+                                    .withUrl('https://localhost:44319/predictions')
+                                    .build();
+
+    this.hubConnection
+      .start()
+      .then(() => console.log('Connection started'))
+      .catch(err => console.log('Error while starting connection: ' + err))
+  }
+
+  addPredictionListener() {
+    this.hubConnection.on('prediction', (prediction) => {
+      const predictionObject = JSON.parse(prediction);
+      this.service.formdata.firstClassPrediction = predictionObject.FirstClassPrediction.toFixed(2);
+      this.service.formdata.secondClassPrediction = predictionObject.SecondClassPrediction.toFixed(2);
+      console.log(predictionObject);
+    });
+  }
+
   onSubmit(form: NgForm) {
+    console.log(form.value);
     if (form.value.id == null) {
       delete form.value.id;
       this.insertRecord(form);

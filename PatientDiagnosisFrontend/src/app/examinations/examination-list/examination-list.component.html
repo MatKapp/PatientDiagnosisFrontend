@@ -10,23 +10,56 @@
   <table [hidden]="!showTable" datatable [dtOptions]="dtOptions" class="row-border hover m-5">
     <thead>
       <tr>
-        <th>ID</th>
-        <th>Infraction</th>
-        <th>firstTia</th>
+        <th>Observation Id</th>
+        <th>Patient Id</th>
+        <th>Atrial Fibrillation</th>
+        <th>Body weakness</th>
+        <th>First TIA</th>
+        <th>Gait disturbance</th>
+        <th>High glucose (≥15 mmol/L)</th>
+        <th>Infraction (on computed tomography)</th>
+        <th>Initial DBP</th>
+        <th>Speech difficulties</th>
+        <th>Vertigo</th>
+        <th>firstClassPrediction</th>
+        <th>secondClassPrediction</th>
+        <th>TIA occured in two weeks</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let exam of examinations">
         <td>{{ exam.id }}</td>
-        <td>{{ exam.infraction }}</td>
+        <td>{{ exam.patientId }}</td>
+        <td>{{ exam.atrialFibrillation }}</td>
+        <td>{{ exam.bodyWeakness }}</td>
         <td>{{ exam.firstTia }}</td>
+        <td>{{ exam.gaitDisturb }}</td>
+        <td>{{ exam.highGlucose }}</td>
+        <td>{{ exam.infraction }}</td>
+        <td>{{ exam.initialDbp }}</td>
+        <td>{{ exam.speechDif }}</td>
+        <td>{{ exam.vertigo }}</td>
+        <td>{{ exam.firstClassPrediction }}</td>
+        <td>{{ exam.secondClassPrediction }}</td>
+        <td>{{ exam.tiaInTwoWeeksOccured }}</td>
       </tr>
     </tbody>
     <tfoot>
       <tr>
-        <th>ID</th>
-        <th>Infraction</th>
-        <th>firstTia</th>
+        <th>Observation Id</th>
+        <th>Patient Id</th>
+        <th>Atrial Fibrillation</th>
+        <th>Body weakness</th>
+        <th>First TIA</th>
+        <th>Gait disturbance</th>
+        <th>High glucose (≥15 mmol/L)</th>
+        <th>Infraction (on computed tomography)</th>
+        <th>Initial DBP</th>
+        <th>Speech difficulties</th>
+        <th>Vertigo</th>
+        <th>firstClassPrediction</th>
+        <th>secondClassPrediction</th>
+        <th>TIA occured in two weeks</th>
       </tr>
     </tfoot>
   </table>

@@ -5,17 +5,23 @@
     <td><button (click)="onDelete(exam.id)" class="btn btn-sm btn-outline-danger">X</button></td>
   </tr>
 </table> -->
-<app-examination *ngIf="editPatientExamination" (backClick)="toogleEditPatients()"[examination]="selectedPatientExamination" [patientId]="selectedPatientId">
+<app-patient *ngIf="editPatient" (backClick)="toogleEditPatient()" (patientAdded)="onPatientAdded($event)" (patientUpdated)="onPatientUpdated($event)" [patientId]="selectedPatientId">
+</app-patient>
+<app-examination *ngIf="editPatientExamination" (backClick)="toogleEditPatientExaminations()"[examination]="selectedPatientExamination" [patientId]="selectedPatientId">
 </app-examination>
-<div class="m-5" *ngIf="!editPatientExamination">
-  <h1 class="mb-3">Patients:</h1>
+<div class="m-5" *ngIf="!editPatientExamination && !editPatient">
+  <div class="w-100 m-5">
+    <h1 class="mb-3 d-inline-block w-50">Patients:</h1>
+    <button class="d-inline-block w-50 btn btn-info" (click)="showPatient()">Add new patient</button>
+  </div>
   <table [hidden]="!showTable" datatable [dtOptions]="dtOptions" class="row-border hover m-5">
     <thead>
       <tr>
-        <th>ID</th>
-        <th>SURNAME</th>
-        <th>AGE</th>
+        <th>Patient Id</th>
+        <th>Surname</th>
+        <th>Age</th>
         <th>Observations</th>
+        <th>Edit Patient</th>
       </tr>
     </thead>
     <tbody>
@@ -26,14 +32,18 @@
         <td>
           <button type="button" class="btn btn-info" (click)="showPatientExaminations(patient)">Observations</button>
         </td>
+        <td>
+          <button type="button" class="btn btn-info" (click)="showPatient(patient)">Edit</button>
+        </td>
       </tr>
     </tbody>
     <tfoot>
       <tr>
-        <th>ID</th>
-        <th>SURNAME</th>
-        <th>AGE</th>
+        <th>Patient Id</th>
+        <th>Surname</th>
+        <th>Age</th>
         <th>Observations</th>
+        <th>Edit Patient</th>
       </tr>
     </tfoot>
     </table>
