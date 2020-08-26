@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class PatientService {
   formdata: Patient;
   list: Patient[];
-  readonly rootURL = 'https://localhost:44393/api/patients/'
+  readonly rootURL = 'https://0c9715e4e56f.ngrok.io/api/patients/'
 
   constructor(private http: HttpClient) { }
 

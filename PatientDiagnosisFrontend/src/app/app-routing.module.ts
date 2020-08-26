@@ -9,6 +9,11 @@ import { PatientsResolverService } from './service/patients-resolver.service';
 
 const routes: Routes = [
     {
+      path: '',
+      redirectTo: 'patients',
+      pathMatch: 'full'
+    },
+    {
         path: 'observations',
         component: ExaminationListComponent,
         resolve: { examinations: ExaminationsResolverService }
@@ -17,10 +22,6 @@ const routes: Routes = [
       path: 'patients',
       component: PatientListComponent,
       resolve: { patients: PatientsResolverService }
-    },
-    {
-        path: 'menu',
-        component: MenuComponent
     },
     {
         path: 'statistics',

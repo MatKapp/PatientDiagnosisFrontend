@@ -7,7 +7,7 @@ import { ExaminationService } from 'src/app/service/examination.service';
   providedIn: 'root'
 })
 export class StatisticsService {
-  readonly rootURL = 'https://localhost:44393/api/statistics/'
+  readonly rootURL = 'https://0c9715e4e56f.ngrok.io/api/statistics/'
 
   constructor(private http: HttpClient,
     private examinationService: ExaminationService,
@@ -29,5 +29,13 @@ export class StatisticsService {
 
   getAgeFrequency() {
     return this.http.get(this.rootURL + 'GetAgeFrequency');
+  }
+
+  getTiaOccuredFrequency() {
+    return this.http.get(this.rootURL + 'GetTiaOccuredFrequency');
+  }
+
+  GetObservationsRatioByTiaOccured(occured) {
+    return this.http.get(this.rootURL + 'GetObservationsRatioByTiaOccured/' + occured);
   }
 }
