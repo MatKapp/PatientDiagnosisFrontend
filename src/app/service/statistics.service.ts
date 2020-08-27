@@ -7,7 +7,7 @@ import { ExaminationService } from 'src/app/service/examination.service';
   providedIn: 'root'
 })
 export class StatisticsService {
-  readonly rootURL = 'https://0c9715e4e56f.ngrok.io/api/statistics/'
+  readonly rootURL = 'https://2fd5e2631a0e.ngrok.io/api/statistics/'
 
   constructor(private http: HttpClient,
     private examinationService: ExaminationService,
