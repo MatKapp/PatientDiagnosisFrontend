@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class ExaminationService {
   formdata: Examination;
   list: Examination[];
-  readonly rootURL = 'https://2fd5e2631a0e.ngrok.io/api/examinations/'
+  readonly rootURL = 'https://4986c33f97ef.ngrok.io/api/examinations/'
 
   constructor(private http: HttpClient) { }
 
