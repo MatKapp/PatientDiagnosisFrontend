@@ -4,7 +4,6 @@ import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Patient } from 'src/app/model/patient.model';
 import { Examination } from 'src/app/model/examination.model';
-import { async } from '@angular/core/testing';
 import { Observable } from 'rxjs';
 import * as signalR from '@aspnet/signalr';
 
@@ -17,6 +16,7 @@ export class ExaminationComponent implements OnInit {
   @Input() examination: Observable<Examination>;
   @Input() patientId;
   @Output() backClick: EventEmitter<any> = new EventEmitter();
+  @Output() examinationInserted: EventEmitter<any> = new EventEmitter();
 
   public hubConnection: signalR.HubConnection;
 
@@ -29,18 +29,18 @@ export class ExaminationComponent implements OnInit {
     this.service.formdata = {
       id: null,
       patientId: this.patientId,
-      atrialFibrillation: false,
-      bodyWeakness: false,
-      firstTia: false,
-      gaitDisturb: false,
-      highGlucose: false,
-      infraction: 0,
-      initialDbp: 0,
-      speechDif: false,
-      vertigo: false,
+      atrialFibrillation: null,
+      bodyWeakness: null,
+      firstTia: null,
+      gaitDisturb: null,
+      highGlucose: null,
+      infraction: null,
+      initialDbp: null,
+      speechDif: null,
+      vertigo: null,
       firstClassPrediction: 0,
       secondClassPrediction: 0,
-      tiaInTwoWeeksOccured: false
+      tiaInTwoWeeksOccured: null
     };
 
     this.resetForm();
@@ -56,19 +56,19 @@ export class ExaminationComponent implements OnInit {
     if (this.examination == null){
       this.service.formdata = {
         id: null,
-        patientId: null,
-        atrialFibrillation: false,
-        bodyWeakness: false,
-        firstTia: false,
-        gaitDisturb: false,
-        highGlucose: false,
-        infraction: 0,
-        initialDbp: 0,
-        speechDif: false,
-        vertigo: false,
+        patientId: this.patientId,
+        atrialFibrillation: null,
+        bodyWeakness: null,
+        firstTia: null,
+        gaitDisturb: null,
+        highGlucose: null,
+        infraction: null,
+        initialDbp: null,
+        speechDif: null,
+        vertigo: null,
         firstClassPrediction: 0,
         secondClassPrediction: 0,
-        tiaInTwoWeeksOccured: false
+        tiaInTwoWeeksOccured: null
       };
     } else {
       this.examination.subscribe((res) => this.service.formdata = res);
@@ -91,26 +91,24 @@ export class ExaminationComponent implements OnInit {
       const predictionObject = JSON.parse(prediction);
       this.service.formdata.firstClassPrediction = predictionObject.FirstClassPrediction.toFixed(2);
       this.service.formdata.secondClassPrediction = predictionObject.SecondClassPrediction.toFixed(2);
-      console.log(predictionObject);
     });
   }
 
   onSubmit(form: NgForm) {
-    console.log(form.value);
     if (form.value.id == null) {
       delete form.value.id;
       this.insertRecord(form);
     } else {
       this.updateRecord(form);
     }
-    // this.resetForm(form);
     this.service.refreshList();
+    this.backClick.emit(null);
   }
 
   insertRecord(form: NgForm) {
-    this.service.postExamination(form.value).subscribe(res => {
-      this.toastr.success('Inserted successfully', 'EXAM register');
-    });
+    form.value.patientId = this.patientId;
+    this.examinationInserted.emit(
+      this.service.postExamination(form.value));
   }
 
   updateRecord(form: NgForm) {

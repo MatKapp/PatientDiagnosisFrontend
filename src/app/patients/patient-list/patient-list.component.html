@@ -5,11 +5,12 @@
     <td><button (click)="onDelete(exam.id)" class="btn btn-sm btn-outline-danger">X</button></td>
   </tr>
 </table> -->
-<app-patient *ngIf="editPatient" (backClick)="toogleEditPatient()" (patientAdded)="onPatientAdded($event)" (patientUpdated)="onPatientUpdated($event)" [patientId]="selectedPatientId">
+<app-patient *ngIf="state==='patient-edit'" (backClick)="state='patients'" (patientAdded)="onPatientAdded($event)" (patientUpdated)="onPatientUpdated($event)" [patientId]="selectedPatientId">
 </app-patient>
-<app-examination *ngIf="editPatientExamination" (backClick)="toogleEditPatientExaminations()"[examination]="selectedPatientExamination" [patientId]="selectedPatientId">
+<visit-list *ngIf="state==='visits'" [visits]="patientVisits" (backClick)="visitBackClicked()" (finishVisitClick)="finishVisit($event)" (examinationClick)="showExamination($event)" (addNewVisitClick)="addNewVisit()"></visit-list>
+<app-examination *ngIf="state==='examination-edit'" (backClick)="examinationBackClicked()" (examinationInserted)="examinationInserted($event)" [examination]="selectedPatientExamination" [patientId]="selectedPatientId">
 </app-examination>
-<div class="m-5" *ngIf="!editPatientExamination && !editPatient">
+<div class="m-5" *ngIf="state==='patients'">
   <div class="w-100 m-5">
     <h1 class="mb-3 d-inline-block w-50">Patients:</h1>
     <button class="d-inline-block w-50 btn btn-info" (click)="showPatient()">Add new patient</button>
@@ -18,6 +19,7 @@
     <thead>
       <tr>
         <th>Patient Id</th>
+        <th>Hospital admission date</th>
         <th>Surname</th>
         <th>Age</th>
         <th>Observations</th>
@@ -27,10 +29,11 @@
     <tbody>
       <tr *ngFor="let patient of patients">
         <td>{{ patient.id }}</td>
+        <td>{{ patient.admissionDate | date:'mediumDate'}}</td>
         <td>{{ patient.surname }}</td>
         <td>{{ patient.age }}</td>
         <td>
-          <button type="button" class="btn btn-info" (click)="showPatientExaminations(patient)">Observations</button>
+          <button type="button" class="btn btn-info" (click)="showPatientVisits(patient)">Visits</button>
         </td>
         <td>
           <button type="button" class="btn btn-info" (click)="showPatient(patient)">Edit</button>

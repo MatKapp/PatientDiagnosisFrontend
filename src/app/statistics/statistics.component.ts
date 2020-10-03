@@ -24,7 +24,7 @@ export class StatisticsComponent implements OnInit {
     this.statisticsService.getPredictionsFrequency()
       .subscribe(res => {
         if (res instanceof Array) {
-          this.predictionsFrequency = res.map(prediction => ({name: prediction.roandedPrediction.toString(), value: prediction.frequency.toString()}))
+          this.predictionsFrequency = res.map(prediction => ({name: prediction.roandedPrediction.toString(), value: prediction.frequency}));
         }
       });
 

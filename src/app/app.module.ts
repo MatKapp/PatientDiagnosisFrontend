@@ -4,8 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule } from '@angular/material';
+import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule, MatSelectModule } from '@angular/material';
 import {MatTabsModule} from '@angular/material/tabs';
+import { MatInputModule } from '@angular/material/input';
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
@@ -25,6 +26,7 @@ import { PatientService } from './service/patient.service';
 import { StatisticsService } from './service/statistics.service';
 import { MenuComponent } from './menu/menu.component';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { VisitListComponent } from './visit-list/visit-list.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { StatisticsComponent } from './statistics/statistics.component';
     PatientComponent,
     PatientListComponent,
     MenuComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    VisitListComponent
   ],
   imports: [
     AppRoutingModule,
@@ -52,7 +55,9 @@ import { StatisticsComponent } from './statistics/statistics.component';
     MatIconModule,
     DataTablesModule,
     NgxChartsModule,
-    MatTabsModule
+    MatTabsModule,
+    MatInputModule,
+    MatSelectModule
   ],
   providers: [ExaminationService, PatientService, StatisticsService],
   bootstrap: [AppComponent]

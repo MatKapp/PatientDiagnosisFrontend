@@ -9,17 +9,29 @@ import { Observable } from 'rxjs';
 export class ExaminationService {
   formdata: Examination;
   list: Examination[];
-  readonly rootURL = 'https://4986c33f97ef.ngrok.io/api/examinations/'
+  readonly rootURL = 'https://localhost:44393/api/examinations/';
 
   constructor(private http: HttpClient) { }
 
   getByPatient(id: any): any {
-    return this.http.get(this.rootURL + 'getByPatient/' + id + '/')
+    return this.http.get(this.rootURL + 'getByPatient/' + id + '/');
+  }
+
+  getVisitsByPatient(id: any): any {
+    return this.http.get(this.rootURL + 'getVisitsByPatient/' + id + '/');
+  }
+
+  getExamination(id: any): any {
+    return this.http.get(this.rootURL + id + '/');
   }
 
   postExamination(formData: Examination) {
     return this.http.post(this.rootURL, formData);
    }
+
+  finishVisit(examinationId: number) {
+    return this.http.post(this.rootURL + 'finishVisit/' + examinationId + '/', {});
+  }
 
   putExamination(formData: Examination) {
   return this.http.put(this.rootURL + formData.id + '/', formData);

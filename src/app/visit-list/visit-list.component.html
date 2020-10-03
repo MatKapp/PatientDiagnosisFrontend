@@ -1,0 +1,35 @@
+<div class="m-5">
+  <div class="w-100 m-5">
+    <h1 class="mb-3 d-inline-block w-50">Visits:</h1>
+    <button class="d-inline-block w-50 btn btn-info" (click)="addNewVisit()">Add new visit</button>
+  </div>
+  <table [hidden]="!showTable" datatable [dtOptions]="dtOptions" class="row-border hover m-5">
+    <thead>
+      <tr>
+        <th>Admission date</th>
+        <th>Discharge date</th>
+        <th>Examinations</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let visit of visits">
+        <td>{{ visit.admissionDate | date:'mediumDate'}}</td>
+        <td *ngIf="visit.isFinished">{{ visit.dischargeDate | date:'mediumDate'}}</td>
+        <td *ngIf="!visit.isFinished"><button type="button" class="btn btn-info" (click)="finishVisitClicked(visit.examinationId)">Finish Visit</button></td>
+        <td>
+          <button type="button" class="btn btn-info" (click)="examinationClicked(visit.examinationId)">Examinations</button>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>Admission date</th>
+        <th>Discharge date</th>
+        <th>Examinations</th>
+      </tr>
+    </tfoot>
+    </table>
+    <div class="form-group btn-group w-75 m-2">
+      <button type="button" class="btn btn-secondary m-5" (click)="backClicked()">BACK</button>
+    </div>
+</div>

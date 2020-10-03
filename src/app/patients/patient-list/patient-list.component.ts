@@ -5,6 +5,8 @@ import { Patient } from 'src/app/model/patient.model';
 import { Examination } from 'src/app/model/examination.model';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
+import { Visit } from 'src/app/model/visit.model';
+import { Observable } from 'rxjs';
 declare var jquery: any;
 
 @Component({
@@ -15,11 +17,13 @@ declare var jquery: any;
 export class PatientListComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   public patients: Patient[];
+  public patientVisits: Visit[];
   public showTable: boolean;
   editPatientExamination = false;
+  state = 'patients';
   editPatient = false;
   selectedPatientId = null;
-  selectedPatientExamination: Examination = null;
+  selectedPatientExamination: Observable<Examination>;
 
   constructor(
     private patientService: PatientService,
@@ -45,7 +49,7 @@ export class PatientListComponent implements OnInit {
   }
 
   onDelete(id: number) {
-    if (confirm('Are you sure to delete this record?')){
+    if (confirm('Are you sure to delete this record?')) {
       this.patientService.deletePatient(id).subscribe(res => {
         this.refreshList();
         this.toastr.warning('Deleted successfully', 'PATIENT deleted');
@@ -53,22 +57,45 @@ export class PatientListComponent implements OnInit {
     }
   }
 
-  toogleEditPatientExaminations() {
-    this.editPatientExamination = this.editPatientExamination ? false : true;
-  }
-
-  toogleEditPatient() {
-    this.editPatient = this.editPatient ? false : true;
-  }
-
   refreshList() {
     this.patientService.getPatients().subscribe(data => this.patients = data as Patient[]);
   }
 
-  public showPatientExaminations(patient) {
-    this.selectedPatientId = patient.id;
-    this.selectedPatientExamination = this.examinationService.getByPatient(patient.id);
-    this.toogleEditPatientExaminations();
+  public showPatientVisits(patient) {
+    if (patient != null) {
+      this.selectedPatientId = patient.id;
+    }
+    this.examinationService.getVisitsByPatient(this.selectedPatientId).subscribe(data => this.patientVisits = data as Visit[]);
+    this.state = 'visits';
+  }
+
+  examinationBackClicked() {
+    this.state = 'visits';
+  }
+
+  public examinationInserted(examination) {
+    examination.subscribe(res => {
+      this.toastr.success('Inserted successfully', 'EXAM register');
+      this.patientVisits.push(new Visit(res));
+    });
+  }
+
+  public showExamination(examinationId) {
+    this.selectedPatientExamination = this.examinationService.getExamination(examinationId);
+    this.state = 'examination-edit';
+  }
+
+  public addNewVisit() {
+    this.selectedPatientExamination = null;
+    this.state = 'examination-edit';
+  }
+
+  public finishVisit(examinationId){
+    const indexToUpdate = this.patientVisits.findIndex(item => item.examinationId === examinationId);
+    this.patientVisits[indexToUpdate].dischargeDate = new Date(Date.now());
+    this.patientVisits[indexToUpdate].isFinished = true;
+    this.examinationService.finishVisit(examinationId).subscribe(data => console.log(data));
+    console.log('finished');
   }
 
   public showPatient(patient) {
@@ -78,15 +105,22 @@ export class PatientListComponent implements OnInit {
     else {
       this.selectedPatientId = undefined;
     }
-    this.toogleEditPatient();
+    this.state = 'patient-edit';
   }
 
-  public onPatientAdded(patient) {
-    this.refreshList();
+  public onPatientAdded(patientAddedObservable) {
+    patientAddedObservable.subscribe(res => {
+      this.patients.push(res);
+      this.toastr.success('Inserted successfully', 'PATIENT register');
+    });
+  }
+
+  public visitBackClicked() {
+    this.state = 'patients';
+    this.patientVisits = [];
   }
 
   public onPatientUpdated(patient) {
-    console.log(patient);
     const indexToUpdate = this.patients.findIndex(item => item.id === patient.id);
     this.patients[indexToUpdate] = patient;
   }

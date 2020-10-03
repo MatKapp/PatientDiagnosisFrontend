@@ -1,18 +1,18 @@
 <div class="m-5 w-100">
   <div class="w-25 d-inline-block mx-5 align-top">
     <h2>FirstClassPrediction frequency:</h2>
-    <ngx-charts-pie-chart [results]="predictionsFrequency" [labels]="true" [legend]="true" [gradient]="true">
-    </ngx-charts-pie-chart>
+    <ngx-charts-pie-chart  [results]="predictionsFrequency" [labels]="true" [legend]="true" [gradient]="true">
+    </ngx-charts-pie-chart >
+  </div>
+  <div class="w-25 d-inline-block mx-5 align-top">
+    <h2>Tia occured frequency:</h2>
+    <ngx-charts-pie-grid [results]="tiaOccuredFrequency">
+    </ngx-charts-pie-grid>
   </div>
   <div class="w-25 d-inline-block mx-5 align-top">
     <h2>Age frequency:</h2>
     <ngx-charts-bar-vertical [results]="ageFrequency" [gradient]="true" [xAxis]="true" [yAxis]="true" [xAxisLabel]="'Ages range'" [showXAxisLabel]="true" [showYAxisLabel]="true" [yAxisLabel]="'Frequency'">
     </ngx-charts-bar-vertical>
-  </div>
-  <div class="w-30 d-inline-block mx-5 align-top">
-    <h2>Tia occured frequency:</h2>
-    <ngx-charts-pie-grid [results]="tiaOccuredFrequency">
-    </ngx-charts-pie-grid>
   </div>
   <div class="w-50 d-inline-block p-5" style="max-height: 250px;">
     <h2>Observations ratio - TIA occured:</h2>

@@ -22,7 +22,8 @@ export class PatientComponent implements OnInit {
     this.service.formdata = {
       id: null,
       surname: '',
-      age: 0
+      age: 0,
+      admissionDate: null
     };
 
     if (this.patientId != undefined) {
@@ -40,7 +41,8 @@ export class PatientComponent implements OnInit {
     this.service.formdata = {
       id: null,
       surname: '',
-      age: 0
+      age: 0,
+      admissionDate: null
     };
   }
 
@@ -52,21 +54,18 @@ export class PatientComponent implements OnInit {
     } else {
       this.updateRecord(form);
     }
-    this.service.refreshList();
+    this.backClick.emit(null);
   }
 
   insertRecord(form: NgForm) {
-    this.service.postPatient(form.value).subscribe(res => {
-      this.toastr.success('Inserted successfully', 'PATIENT register');
-      this.patientAdded.emit(form.value);
-    });
+    this.patientAdded.emit(this.service.postPatient(form.value));
   }
 
   updateRecord(form: NgForm) {
+    this.patientUpdated.emit(form.value);
+
     this.service.putPatient(form.value).subscribe(res => {
       this.toastr.success('Updated successfully', 'PATIENT updated');
-      console.log(form.value);
-      this.patientUpdated.emit(form.value);
     });
   }
 
