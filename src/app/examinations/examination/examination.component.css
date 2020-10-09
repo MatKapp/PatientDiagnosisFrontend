@@ -9,6 +9,13 @@ label {
   height: 300px;
 }
 
+.column-body {
+  float: left;
+  width: 45%;
+  padding: 20px;
+  height: 450px;
+}
+
 .row:after {
   content: "";
   display: table;

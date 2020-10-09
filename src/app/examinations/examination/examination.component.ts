@@ -26,22 +26,23 @@ export class ExaminationComponent implements OnInit {
 
 
   ngOnInit() {
-    this.service.formdata = {
-      id: null,
-      patientId: this.patientId,
-      atrialFibrillation: null,
-      bodyWeakness: null,
-      firstTia: null,
-      gaitDisturb: null,
-      highGlucose: null,
-      infraction: null,
-      initialDbp: null,
-      speechDif: null,
-      vertigo: null,
-      firstClassPrediction: 0,
-      secondClassPrediction: 0,
-      tiaInTwoWeeksOccured: null
-    };
+    this.service.formdata = new Examination();
+    // this.service.formdata = {
+    //   id: null,
+    //   patientId: this.patientId,
+    //   atrialFibrillation: null,
+    //   bodyWeakness: null,
+    //   firstTia: null,
+    //   gaitDisturb: null,
+    //   highGlucose: null,
+    //   infraction: null,
+    //   initialDbp: null,
+    //   speechDif: null,
+    //   vertigo: null,
+    //   firstClassPrediction: 0,
+    //   secondClassPrediction: 0,
+    //   tiaInTwoWeeksOccured: null
+    // };
 
     this.resetForm();
     this.startSignalRConnection();
@@ -53,23 +54,8 @@ export class ExaminationComponent implements OnInit {
       form.resetForm();
     }
 
-    if (this.examination == null){
-      this.service.formdata = {
-        id: null,
-        patientId: this.patientId,
-        atrialFibrillation: null,
-        bodyWeakness: null,
-        firstTia: null,
-        gaitDisturb: null,
-        highGlucose: null,
-        infraction: null,
-        initialDbp: null,
-        speechDif: null,
-        vertigo: null,
-        firstClassPrediction: 0,
-        secondClassPrediction: 0,
-        tiaInTwoWeeksOccured: null
-      };
+    if (this.examination == null) {
+      this.service.formdata = new Examination();
     } else {
       this.examination.subscribe((res) => this.service.formdata = res);
     }

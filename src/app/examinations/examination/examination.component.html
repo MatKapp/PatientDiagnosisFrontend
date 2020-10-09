@@ -23,7 +23,7 @@
     </div>
   </div>
   <mat-tab-group>
-    <mat-tab label="First interview with a patient">
+    <!-- <mat-tab label="First interview with a patient">
       <div class="form-group">
         <label>Speech difficulties</label>
         <mat-form-field>
@@ -84,8 +84,361 @@
           </mat-select>
         </mat-form-field>
       </div>
+    </mat-tab> -->
+    <mat-tab label="Medical history">
+      <div class="row">
+        <div class="column-body">
+          <div class="form-group">
+            <label>PMH: hypertension</label>
+            <mat-form-field>
+              <mat-select name="pmedhisHyp" [(ngModel)]="service.formdata.pmedhisHyp">
+                <mat-option [value]="null">None</mat-option>
+                <mat-option [value]="true">Present</mat-option>
+                <mat-option [value]="false">Absent</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label>PMH: coronary artery disease</label>
+            <mat-form-field>
+              <mat-select name="pmedhisCad" [(ngModel)]="service.formdata.pmedhisCad">
+                <mat-option [value]="null">None</mat-option>
+                <mat-option [value]="true">Present</mat-option>
+                <mat-option [value]="false">Absent</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label>PMH: atrial fibrillation</label>
+            <mat-form-field>
+              <mat-select name="pmedhisAf" [(ngModel)]="service.formdata.pmedhisAf">
+                <mat-option [value]="null">None</mat-option>
+                <mat-option [value]="true">Present</mat-option>
+                <mat-option [value]="false">Absent</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label>PMH: peripheral vascular disease</label>
+            <mat-form-field>
+              <mat-select name="pmedhisPvd" [(ngModel)]="service.formdata.pmedhisPvd">
+                <mat-option [value]="null">None</mat-option>
+                <mat-option [value]="true">Present</mat-option>
+                <mat-option [value]="false">Absent</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label>PMH: diabetes</label>
+            <mat-form-field>
+              <mat-select name="pmedhisDiab" [(ngModel)]="service.formdata.pmedhisDiab">
+                <mat-option [value]="null">None</mat-option>
+                <mat-option [value]="true">Present</mat-option>
+                <mat-option [value]="false">Absent</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label>PMH: known prior stroke</label>
+            <mat-form-field>
+              <mat-select name="pmedhisKps" [(ngModel)]="service.formdata.pmedhisKps">
+                <mat-option [value]="null">None</mat-option>
+                <mat-option [value]="true">Present</mat-option>
+                <mat-option [value]="false">Absent</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label>PMH: current smoker</label>
+            <mat-form-field>
+              <mat-select name="pmedhisSmoker" [(ngModel)]="service.formdata.pmedhisSmoker">
+                <mat-option [value]="null">None</mat-option>
+                <mat-option [value]="true">Present</mat-option>
+                <mat-option [value]="false">Absent</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label>PMH: carotid stenosis</label>
+            <mat-form-field>
+              <mat-select name="pmedhisCs" [(ngModel)]="service.formdata.pmedhisCs">
+                <mat-option [value]="null">None</mat-option>
+                <mat-option [value]="true">Present</mat-option>
+                <mat-option [value]="false">Absent</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label>PMH: CHF</label>
+            <mat-form-field>
+              <mat-select name="pmedhisChf" [(ngModel)]="service.formdata.pmedhisChf">
+                <mat-option [value]="null">None</mat-option>
+                <mat-option [value]="true">Present</mat-option>
+                <mat-option [value]="false">Absent</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label>PMH: high cholesterol</label>
+            <mat-form-field>
+              <mat-select name="pmedhisHchol" [(ngModel)]="service.formdata.pmedhisHchol">
+                <mat-option [value]="null">None</mat-option>
+                <mat-option [value]="true">Present</mat-option>
+                <mat-option [value]="false">Absent</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label>PMH: dementia</label>
+            <mat-form-field>
+              <mat-select name="pmedhisDem" [(ngModel)]="service.formdata.pmedhisDem">
+                <mat-option [value]="null">None</mat-option>
+                <mat-option [value]="true">Present</mat-option>
+                <mat-option [value]="false">Absent</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label>medIbupLast7days</label>
+            <mat-form-field>
+              <mat-select name="medIbupLast7days" [(ngModel)]="service.formdata.medIbupLast7days">
+                <mat-option [value]="null">None</mat-option>
+                <mat-option [value]="true">Present</mat-option>
+                <mat-option [value]="false">Absent</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label>pmedhisVhd</label>
+            <mat-form-field>
+              <mat-select name="pmedhisVhd" [(ngModel)]="service.formdata.pmedhisVhd">
+                <mat-option [value]="null">None</mat-option>
+                <mat-option [value]="true">Present</mat-option>
+                <mat-option [value]="false">Absent</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label>Altered sensation</label>
+            <mat-form-field>
+              <mat-select name="mySensation" [(ngModel)]="service.formdata.mySensation">
+                <mat-option [value]="null">None</mat-option>
+                <mat-option [value]="true">Present</mat-option>
+                <mat-option [value]="false">Absent</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label>Weakness</label>
+            <mat-form-field>
+              <mat-select name="myWeakness" [(ngModel)]="service.formdata.myWeakness">
+                <mat-option [value]="null">None</mat-option>
+                <mat-option [value]="true">Present</mat-option>
+                <mat-option [value]="false">Absent</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="column-body">
+          <div class="form-group">
+            <label>Med: ASA</label>
+            <input name="medAsa" #initialDbp="ngModel" [(ngModel)]="service.formdata.medAsa" class="form-control" type="number">
+          </div>
+          <div class="form-group">
+            <label>Med: dipyridmole</label>
+            <input name="medDipy" #initialDbp="ngModel" [(ngModel)]="service.formdata.medDipy" class="form-control" type="number">
+          </div>
+          <div class="form-group">
+            <label>Med: statin</label>
+            <input name="medStat" #initialDbp="ngModel" [(ngModel)]="service.formdata.medStat" class="form-control" type="number">
+          </div>
+          <div class="form-group">
+            <label>Med: antihypertensives</label>
+            <input name="medAnti" #initialDbp="ngModel" [(ngModel)]="service.formdata.medAnti" class="form-control" type="number">
+          </div>
+          <div class="form-group">
+            <label>Med warfarin (coumadin)</label>
+            <input name="medCoum" #initialDbp="ngModel" [(ngModel)]="service.formdata.medCoum" class="form-control" type="number">
+          </div>
+          <div class="form-group">
+            <label>Old or acute infarct</label>
+            <input name="myInfarct" #initialDbp="ngModel" [(ngModel)]="service.formdata.myInfarct" class="form-control" type="number">
+          </div>
+          <div class="form-group">
+            <label>Total number of TIA in the past</label>
+            <input name="inittiaNumpast" #initialDbp="ngModel" [(ngModel)]="service.formdata.inittiaNumpast" class="form-control" type="number">
+          </div>
+          <div class="form-group">
+            <label>Gait disturbance/abnormality</label>
+            <mat-form-field>
+              <mat-select name="myGait" [(ngModel)]="service.formdata.myGait">
+                <mat-option [value]="null">None</mat-option>
+                <mat-option [value]="true">Present</mat-option>
+                <mat-option [value]="false">Absent</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label>Vertigo or syncope</label>
+            <mat-form-field>
+              <mat-select name="myVertigoSyncope" [(ngModel)]="service.formdata.myVertigoSyncope">
+                <mat-option [value]="null">None</mat-option>
+                <mat-option [value]="true">Present</mat-option>
+                <mat-option [value]="false">Absent</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label>Language disturbance or speech difficulty</label>
+            <mat-form-field>
+              <mat-select name="myLangSpeech" [(ngModel)]="service.formdata.myLangSpeech">
+                <mat-option [value]="null">None</mat-option>
+                <mat-option [value]="true">Present</mat-option>
+                <mat-option [value]="false">Absent</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label>Atrial fibrillation or atrial flutter</label>
+            <mat-form-field>
+              <mat-select name="myAfib" [(ngModel)]="service.formdata.myAfib">
+                <mat-option [value]="null">None</mat-option>
+                <mat-option [value]="true">Present</mat-option>
+                <mat-option [value]="false">Absent</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label>Unilateral weakness – left side</label>
+            <mat-form-field>
+              <mat-select name="uniWeaknessl" [(ngModel)]="service.formdata.uniWeaknessl">
+                <mat-option [value]="null">None</mat-option>
+                <mat-option [value]="true">Present</mat-option>
+                <mat-option [value]="false">Absent</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label>Unilateral weakness – right side</label>
+            <mat-form-field>
+              <mat-select name="uniWeaknessR" [(ngModel)]="service.formdata.uniWeaknessR">
+                <mat-option [value]="null">None</mat-option>
+                <mat-option [value]="true">Present</mat-option>
+                <mat-option [value]="false">Absent</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label>Aphasia</label>
+            <mat-form-field>
+              <mat-select name="aphasia" [(ngModel)]="service.formdata.aphasia">
+                <mat-option [value]="null">None</mat-option>
+                <mat-option [value]="true">Present</mat-option>
+                <mat-option [value]="false">Absent</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
     </mat-tab>
-    <mat-tab label="Examinations">
+    <mat-tab label="Signs and symptoms">
+      <div class="form-group">
+        <label>Temperature</label>
+        <input name="temperature" #initialDbp="ngModel" [(ngModel)]="service.formdata.temperature" class="form-control" type="number">
+      </div>
+      <div class="form-group">
+        <label>Heart rate</label>
+        <input name="hrRate" #initialDbp="ngModel" [(ngModel)]="service.formdata.hrRate" class="form-control" type="number">
+      </div>
+      <div class="form-group">
+        <label>SBP</label>
+        <input name="sbp" #initialDbp="ngModel" [(ngModel)]="service.formdata.sbp" class="form-control" type="number">
+      </div>
+      <div class="form-group">
+        <label>DBP</label>
+        <input name="dbp" #initialDbp="ngModel" [(ngModel)]="service.formdata.dbp" class="form-control" type="number">
+      </div>
+      <div class="form-group">
+        <label>SaO2</label>
+        <input name="sa02" #initialDbp="ngModel" [(ngModel)]="service.formdata.sa02" class="form-control" type="number">
+      </div>
+      <div class="form-group">
+        <label>Duration of symptoms</label>
+        <input name="dursymptoms" #initialDbp="ngModel" [(ngModel)]="service.formdata.dursymptoms" class="form-control" type="number">
+      </div>
+    </mat-tab>
+    <mat-tab label="Diagnostic testing">
+      <div class="row">
+        <div class="column-body">
+          <div class="form-group">
+            <label>Cross-side occurrence of abnormalities in imaging tests and weakness or aphasia</label>
+            <mat-form-field>
+              <mat-select name="peterFlag" [(ngModel)]="service.formdata.peterFlag">
+                <mat-option [value]="null">None</mat-option>
+                <mat-option [value]="true">Present</mat-option>
+                <mat-option [value]="false">Absent</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label>Abnormalities in imaging tests – left side</label>
+            <mat-form-field>
+              <mat-select name="imgAbnL" [(ngModel)]="service.formdata.imgAbnL">
+                <mat-option [value]="null">None</mat-option>
+                <mat-option [value]="true">Present</mat-option>
+                <mat-option [value]="false">Absent</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label>Abnormalities in imaging tests – right side</label>
+            <mat-form-field>
+              <mat-select name="imgAbnR" [(ngModel)]="service.formdata.imgAbnR">
+                <mat-option [value]="null">None</mat-option>
+                <mat-option [value]="true">Present</mat-option>
+                <mat-option [value]="false">Absent</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label>Labs: WBC</label>
+            <input name="wbcvalue" #initialDbp="ngModel" [(ngModel)]="service.formdata.wbcvalue" class="form-control" type="number">
+          </div>
+          <div class="form-group">
+            <label>Labs: HGB</label>
+            <input name="hgbvalue" #initialDbp="ngModel" [(ngModel)]="service.formdata.hgbvalue" class="form-control" type="number">
+          </div>
+          <div class="form-group">
+            <label>Labs: PLT</label>
+            <input name="pltvalue" #initialDbp="ngModel" [(ngModel)]="service.formdata.pltvalue" class="form-control" type="number">
+          </div>
+        </div>
+        <div class="column-body">
+          <div class="form-group">
+            <label>Labs: Creatine</label>
+            <input name="creatinevalue" #initialDbp="ngModel" [(ngModel)]="service.formdata.creatinevalue" class="form-control" type="number">
+          </div>
+          <div class="form-group">
+            <label>Labs: Glucose</label>
+            <input name="glucosevalue" #initialDbp="ngModel" [(ngModel)]="service.formdata.glucosevalue" class="form-control" type="number">
+          </div>
+          <div class="form-group">
+            <label>Labs: CK</label>
+            <input name="ckvalue" #initialDbp="ngModel" [(ngModel)]="service.formdata.ckvalue" class="form-control" type="number">
+          </div>
+          <div class="form-group">
+            <label>Labs: TN-T</label>
+            <input name="tntvalue" #initialDbp="ngModel" [(ngModel)]="service.formdata.tntvalue" class="form-control" type="number">
+          </div>
+          <div class="form-group">
+            <label>ECG</label>
+            <input name="ecgtype" #initialDbp="ngModel" [(ngModel)]="service.formdata.ecgtype" class="form-control" type="number">
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+
+    <!-- <mat-tab label="Examinations">
       <div class="form-group">
         <label>Infraction (on computed tomography)</label>
         <input name="infraction" #infraction="ngModel" [(ngModel)]="service.formdata.infraction" class="form-control" type="number">
@@ -104,7 +457,7 @@
           </mat-select>
         </mat-form-field>
       </div>
-    </mat-tab>
+    </mat-tab> -->
   </mat-tab-group>
   <div class="form-group btn-group w-75 m-2">
     <button type="button" class="btn btn-secondary m-5" (click)="backClicked()">BACK</button>
